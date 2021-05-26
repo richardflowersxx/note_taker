@@ -1,5 +1,6 @@
 const router = require('express').Router();
 let db = [] // require("../db/db.json")
+const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require('constants');
 const fs = require("fs");
 
 router.get("/notes",(req,res)=> {
@@ -22,4 +23,19 @@ router.post("/notes",(req,res) => {
     res.json(db)
 });
 
+router.delete("/notes/:id",(req,res) => {
+    let newdb = []
+    for(let i=0;i<db.length;i++){
+        if(db[i].id != req.params.id){
+            newdb.push(db[i])
+        }
+    }
+ 
+    db = newdb
+    fs.writeFileSync("./db/db.json", JSON.stringify(db), (err) => {
+    if (err) throw err;
+    })
+    console.log("deleteRoutes", db)
+    res.json(db)
+});
 module.exports = router;
