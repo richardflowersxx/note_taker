@@ -20,7 +20,7 @@ A simple desktop aplication where you can save and delete notes. You can check i
 ## Installation
 to install necessary dependecies, run the following command: 
 
-**nmp i**
+**npm i**
 
 ## Usage
 Feel free to use my repo. Some css changes will come soon.
